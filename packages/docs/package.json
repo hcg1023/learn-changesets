@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"build": "echo \"run build\"",
+    "build": "shx cp -r ./src ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "hcg1023 <2293885211@qq.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "shx": "^0.3.4"
+  }
 }
