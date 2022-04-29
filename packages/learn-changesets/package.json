@@ -1,0 +1,12 @@
+{
+  "name": "@hcg1023/learn-changesets",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "hcg1023 <2293885211@qq.com>",
+  "license": "ISC"
+}
