@@ -16,11 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
-          ssh-key: ${{ secrets.SSH_KEY }}
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.0.1
