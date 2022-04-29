@@ -16,11 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3 # 切换到分支的action
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
-          persist-credentials: false
+          persist-credentials: false # 不保存git用户信息，执行完以后就清除，不然会影响changesets/action执行
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.0.1
@@ -36,7 +35,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Create Release Pull Request
+      - name: Create Release Pull Request # 创建release pull request
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          commit: 'chore(changeset): version update'
+          title: 'chore(changeset): version update'

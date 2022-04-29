@@ -13,3 +13,13 @@
 10. `ci.yml`的内容是执行项目的测试和构建
 11. 添加一个`docs`package,然后添加`deploy.yml`
 12. `deploy.yml`的作用是执行打包和部署docs包
+13. 问题记录 `remote: Permission to hcg1023/learn-changesets.git denied to github-actions[bot].fatal: unable to access 'https://github.com/hcg1023/learn-changesets/': The requested URL returned error: 403`
+    1. 出现问题的原因是github checkout 把用户信息缓存下来了，导致 changesets 的action使用了上边的用户信息，就提示无权限了
+    2. 解决方案，在checkout的时候添加`persist-credentials: false`
+       ```yml
+       - name: Checkout Repo
+         uses: actions/checkout@v3
+         with:
+           fetch-depth: 0
+           persist-credentials: false
+       ```
