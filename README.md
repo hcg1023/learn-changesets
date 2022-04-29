@@ -10,3 +10,6 @@
 7. 新建`.github`文件夹，存放github的配置
 8. 在`.github`文件夹下新建`workflows`文件夹
 9. 在`.github/workflows`文件夹下新建`ci.yml`文件
+10. `ci.yml`的内容是执行项目的测试和构建
+11. 添加一个`docs`package,然后添加`deploy.yml`
+12. `deploy.yml`的作用是执行打包和部署docs包
