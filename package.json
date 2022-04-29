@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+	"prepare": "husky install",
+	"changeset": "changeset",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
+    "husky": "^7.0.4",
     "shx": "^0.3.4"
   }
 }
