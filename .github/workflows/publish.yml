@@ -13,8 +13,13 @@ jobs:
     name: Echos
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        run: echo ${{ toJSON(github) }}
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
 
   release:
     name: Release
@@ -22,7 +27,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     steps:
       - name: Echo
-        run: echo  ${{ github.event_name }}
+        run: echo ${{ github.event_name }}
 
       - name: Checkout Repo
         # https://github.com/actions/checkout
