@@ -9,6 +9,13 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  echos:
+    name: Echos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo ${{ toJSON(github) }}
+
   release:
     name: Release
     runs-on: ubuntu-latest
