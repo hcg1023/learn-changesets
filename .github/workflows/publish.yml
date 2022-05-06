@@ -12,6 +12,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    # 如果是push执行的workflow，才会执行这个job，否则不执行
     if: ${{ github.event.workflow_run.event == 'push' }}
     steps:
       - name: Echo
