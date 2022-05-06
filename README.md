@@ -11,15 +11,27 @@
 8. 在`.github`文件夹下新建`workflows`文件夹
 9. 在`.github/workflows`文件夹下新建`ci.yml`文件
 10. `ci.yml`的内容是执行项目的测试和构建
-11. 添加一个`docs`package,然后添加`deploy.yml`
-12. `deploy.yml`的作用是执行打包和部署docs包
-13. 问题记录 `remote: Permission to hcg1023/learn-changesets.git denied to github-actions[bot].fatal: unable to access 'https://github.com/hcg1023/learn-changesets/': The requested URL returned error: 403`
-    1. 出现问题的原因是github checkout 把用户信息缓存下来了，导致 changesets 的action使用了上边的用户信息，就提示无权限了
-    2. 解决方案，在checkout的时候添加`persist-credentials: false`
-       ```yml
-       - name: Checkout Repo
-         uses: actions/checkout@v3
-         with:
-           fetch-depth: 0
-           persist-credentials: false
-       ```
+11. 问题记录 `remote: Permission to hcg1023/learn-changesets.git denied to github-actions[bot].fatal: unable to access 'https://github.com/hcg1023/learn-changesets/': The requested URL returned error: 403`
+    1. 解决方案：github仓库的settings中，给workflow的权限不够，需要在`Settings/Actions/General/Workflow permissions`中选择`Read and write permissions`和`Allow GitHub Actions to create and approve pull requests`
+
+# 关于 publish
+`publish.yml`的作用是执行打包和部署包
+**changesets/action会自动判断我们是否需要执行publish，所以不需要担心任何问题**
+1. 建议publish在ci之后执行
+   1. ```yaml
+      on:
+        workflow_run: # 在main分支的ci这个工作流，执行完成以后
+           workflows: [ci]
+           branches: [main]
+           types: [completed]
+      ```
+      
+2. 在Create Release Pull Request or Publish to npm这一步，changeset会自动判断当前是开发的pull request合并，或者push，还是changesets/main这个分支的合并，**如果是其它分支的合并，则不会执行publish，** 这对发布来说很重要，因为我们需要自己控制发布的时机
+3. 合并一个开发分支进入main分支以后，changesets会创建或更新它自己的changesets/main这个分支，并创建或更新它的pull request，这个时候，changesets/actions只会执行version这个命令，不会执行publish；我们只要在需要发布的时候，把这个pull request合并进来就可以了
+4. 合并到main以后，changesets还会执行publish这个action，但是这一次它会执行publish，而不是version。
+5. 我们还可以在publish.yml中，Post Publish to npm的时候，执行一些额外的操作，比如创建一个release，或者一个tag
+6. 也可以在这里去执行deploy，比如部署到github pages
+
+# 关于changesets/main这个分支
+它是changesets自动创建的，不需要我们手动创建
+

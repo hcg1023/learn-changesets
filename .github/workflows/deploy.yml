@@ -5,11 +5,17 @@ env:
 
 on: # 在什么时候执行
   workflow_run: # 在main分支的ci这个工作流，执行完成以后
-    workflows: [ci]
+    workflows: [publish]
     branches: [main]
     types: [completed]
 
 jobs: # 具体的任务
+  echos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "${{ toJSON(github) }}"
+
   deploy: # 任务的名字
     if: github.event.workflow_run.conclusion == 'success' # 如果上面的工作流执行成功
     timeout-minutes: 10 # 超时时间
