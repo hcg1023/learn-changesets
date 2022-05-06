@@ -5,28 +5,16 @@ env:
 
 on: # 在什么时候执行
   workflow_run: # 在main分支的ci这个工作流，执行完成以后
-    workflows: [publish]
+    workflows: [ci]
     branches: [main]
     types: [completed]
-  workflow_call:
-    inputs:
-      published:
-        required: false
-        type: string
+#  workflow_call: # 这个workflow_call指的是这个工作流可以被别的工作流调用，类似于actions/checkout，inputs指的是可以接收的参数，就是with写的那些，outputs指的是这个工作流调用完成后，返回的结果
+#    inputs:
+#      published:
+#        required: false
+#        type: string
 
 jobs: # 具体的任务
-  echos:
-    runs-on: ubuntu-latest
-    steps:
-      - name: echo github
-        run: echo '${{ toJSON(github) }}'
-      - name: echo needs
-        run: echo '${{ toJSON(needs) }}'
-      - name: echo inputs
-        run: echo '${{ toJSON(inputs) }}'
-      - name: echo runner
-        run: echo '${{ toJSON(runner) }}'
-
   deploy: # 任务的名字
     if: github.event.workflow_run.conclusion == 'success' # 如果上面的工作流执行成功
     timeout-minutes: 10 # 超时时间

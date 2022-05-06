@@ -5,11 +5,6 @@ on:
     workflows: [ci]
     branches: [main]
     types: [completed]
-  workflow_call:
-    outputs:
-      published:
-        description: "是否发布成功"
-        value: ${{ jobs.release.outputs.published }}
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -51,6 +46,3 @@ jobs:
       - name: Post Publish to npm
         if: steps.changesets.outputs.published == 'true'
         run: echo "Published to npm"
-    outputs:
-      published: ${{ steps.changesets.outputs.published }}
-
