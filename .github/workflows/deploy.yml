@@ -8,6 +8,11 @@ on: # 在什么时候执行
     workflows: [publish]
     branches: [main]
     types: [completed]
+  workflow_call:
+    inputs:
+      published:
+        required: false
+        type: string
 
 jobs: # 具体的任务
   echos:
@@ -19,6 +24,8 @@ jobs: # 具体的任务
         run: echo '${{ toJSON(needs) }}'
       - name: echo inputs
         run: echo '${{ toJSON(inputs) }}'
+      - name: echo runner
+        run: echo '${{ toJSON(runner) }}'
 
   deploy: # 任务的名字
     if: github.event.workflow_run.conclusion == 'success' # 如果上面的工作流执行成功
