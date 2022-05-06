@@ -29,8 +29,9 @@
 2. 在Create Release Pull Request or Publish to npm这一步，changeset会自动判断当前是开发的pull request合并，或者push，还是changesets/main这个分支的合并，**如果是其它分支的合并，则不会执行publish，** 这对发布来说很重要，因为我们需要自己控制发布的时机
 3. 合并一个开发分支进入main分支以后，changesets会创建或更新它自己的changesets/main这个分支，并创建或更新它的pull request，这个时候，changesets/actions只会执行version这个命令，不会执行publish；我们只要在需要发布的时候，把这个pull request合并进来就可以了
 4. 合并到main以后，changesets还会执行publish这个action，但是这一次它会执行publish，而不是version。
-5. 我们还可以在publish.yml中，Post Publish to npm的时候，执行一些额外的操作，比如创建一个release，或者一个tag
-6. 也可以在这里去执行deploy，比如部署到github pages
+5. 在publish的时候，由于我们是使用`pnpm -r publish`，所以需要使用`changeset tag`进行tag和release的发布
+6. 我们还可以在publish.yml中，Post Publish to npm的时候，执行一些额外的操作
+7. 也可以在这里去执行deploy，比如部署到github pages
 
 # 关于changesets/main这个分支
 它是changesets自动创建的，不需要我们手动创建
