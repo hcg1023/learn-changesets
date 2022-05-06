@@ -14,7 +14,7 @@ jobs: # 具体的任务
     runs-on: ubuntu-latest
     steps:
       - name: echo
-        run: echo "${{ toJSON(github) }}"
+        run: echo '${{ toJSON(github) }}'
 
   deploy: # 任务的名字
     if: github.event.workflow_run.conclusion == 'success' # 如果上面的工作流执行成功
