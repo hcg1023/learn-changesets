@@ -6,6 +6,9 @@
   "scripts": {
 	"prepare": "husky install",
 	"changeset": "changeset",
+	"prettier": "echo \"hello\"",
+	"release": "pnpm -r publish",
+	"version": "changeset version && npm run prettier",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
