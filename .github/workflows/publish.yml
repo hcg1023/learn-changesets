@@ -1,13 +1,12 @@
 name: Publish
+description: ${{ github.event_name }}
 
 on:
-  push:
-    branches:
-      - main
   workflow_run: # 在main分支的ci这个工作流，执行完成以后
     workflows: [ci]
     branches: [main]
     types: [completed]
+    if: ${{ github.event_name === 'push' }}
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
