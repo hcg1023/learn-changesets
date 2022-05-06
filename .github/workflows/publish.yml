@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflow_run: # 在main分支的ci这个工作流，执行完成以后
+      workflows: [ci]
+      branches: [main]
+      types: [completed]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -28,9 +33,6 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install
-
-      - name: Install Dependencies
-        run: yarn
 
       - name: Publish to npm
         # https://github.com/changesets/action
