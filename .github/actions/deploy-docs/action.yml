@@ -33,9 +33,11 @@ runs:
         cache: 'pnpm'
 
     - run: pnpm install
+      shell: bash
 
     - name: build project
       run: ${{ inputs.build }}
+      shell: bash
 
     - name: Run Deploy
       uses: peaceiris/actions-gh-pages@v3
