@@ -29,8 +29,9 @@ jobs: # 具体的任务
       - name: Deploy to GitHub Pages
         uses: ./.github/actions/deploy-docs
         with:
-          baseUrl: $BASE_URL
+          build: BASE_URL=$BASE_URL pnpm -r build --filter=@hcg1023/learn-changesets-docs
           publish_dir: ./packages/docs/dist
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Install pnpm # 安装pnpm
 #        uses: pnpm/action-setup@v2.0.1 # 使用pnpm的action

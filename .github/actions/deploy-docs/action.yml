@@ -9,6 +9,9 @@ on:
       publish_dir:
         required: true
         type: string
+      github_token:
+        required: true
+        type: string
 
 runs:
   using: 'composite'
@@ -37,7 +40,7 @@ runs:
     - name: Run Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ inputs.github_token }}
         publish_dir: ${{ inputs.publish_dir }}
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
