@@ -1,8 +1,8 @@
 name: deploy
 
 env:
-  BASE_URL: /learn-changesets # 环境变量
-  BUILD_COMMAND: BASE_URL=$BASE_URL pnpm -r build --filter=@hcg1023/learn-changesets-docs
+#  BASE_URL: /learn-changesets # 环境变量
+  BUILD_COMMAND: BASE_URL=/learn-changesets pnpm -r build --filter=@hcg1023/learn-changesets-docs
   PUBLISH_DIR: ./packages/docs/dist
 
 on: # 在什么时候执行
