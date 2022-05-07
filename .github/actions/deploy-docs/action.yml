@@ -1,0 +1,43 @@
+name: Deploy Docs
+
+on:
+  workflow_call:
+    inputs:
+      build:
+        required: true
+        type: string
+      publish_dir:
+        required: true
+        type: string
+
+runs:
+  using: 'composite'
+  steps:
+    - name: checkout code repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2.0.1
+      with:
+        version: 6.15.1
+
+    - name: Set node version to 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+        cache: 'pnpm'
+
+    - run: pnpm install
+
+    - name: build project
+      run: ${{ inputs.build }}
+
+    - name: Run Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ${{ inputs.publish_dir }}
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'

@@ -27,7 +27,7 @@ jobs: # 具体的任务
           fetch-depth: 0
 
       - name: Deploy to GitHub Pages
-        uses: ./.github/actions/deploy-docs.yml
+        uses: ./.github/actions/deploy-docs
         with:
           baseUrl: $BASE_URL
           publish_dir: ./packages/docs/dist
