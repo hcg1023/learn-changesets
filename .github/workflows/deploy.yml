@@ -21,31 +21,36 @@ jobs: # 具体的任务
     runs-on: ubuntu-latest # 执行的环境
 
     steps: # 任务的步骤
-      - name: checkout code repository # 步骤的名字 切到对应的分支
-        uses: actions/checkout@v2 # 使用actions/checkout@v2这个action
-        with: # 这个action的参数
-          fetch-depth: 0
-
-      - name: Install pnpm # 安装pnpm
-        uses: pnpm/action-setup@v2.0.1 # 使用pnpm的action
-        with: # 指定pnpm的版本
-          version: 6.15.1
-
-      - name: Set node version to 16 # 使用node的版本
-        uses: actions/setup-node@v2
+      - name: Deploy to GitHub Pages
+        uses: ./.github/actions/deploy-docs.yml
         with:
-          node-version: 16
-          cache: 'pnpm' # 缓存pnpm
-
-      - run: pnpm install # 执行pnpm install
-
-      - name: build project # 执行build命令
-        run: BASE_URL=$BASE_URL pnpm -r build --filter=@hcg1023/learn-changesets-docs
-
-      - name: Run Deploy # 执行部署
-        uses: peaceiris/actions-gh-pages@v3 # 使用peaceiris/actions-gh-pages@v3这个action
-        with:
-          github_token: ${{ secrets.ACCESS_TOKEN }} # 需要github token
-          publish_dir: ./packages/docs/dist # 部署的目录
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          baseUrl: $BASE_URL
+          publish_dir: ./packages/docs/dist
+#      - name: checkout code repository # 步骤的名字 切到对应的分支
+#        uses: actions/checkout@v2 # 使用actions/checkout@v2这个action
+#        with: # 这个action的参数
+#          fetch-depth: 0
+#
+#      - name: Install pnpm # 安装pnpm
+#        uses: pnpm/action-setup@v2.0.1 # 使用pnpm的action
+#        with: # 指定pnpm的版本
+#          version: 6.15.1
+#
+#      - name: Set node version to 16 # 使用node的版本
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: 16
+#          cache: 'pnpm' # 缓存pnpm
+#
+#      - run: pnpm install # 执行pnpm install
+#
+#      - name: build project # 执行build命令
+#        run: BASE_URL=$BASE_URL pnpm -r build --filter=@hcg1023/learn-changesets-docs
+#
+#      - name: Run Deploy # 执行部署
+#        uses: peaceiris/actions-gh-pages@v3 # 使用peaceiris/actions-gh-pages@v3这个action
+#        with:
+#          github_token: ${{ secrets.ACCESS_TOKEN }} # 需要github token
+#          publish_dir: ./packages/docs/dist # 部署的目录
+#          user_name: 'github-actions[bot]'
+#          user_email: 'github-actions[bot]@users.noreply.github.com'
