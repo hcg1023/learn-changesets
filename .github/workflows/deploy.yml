@@ -2,6 +2,8 @@ name: deploy
 
 env:
   BASE_URL: /learn-changesets # 环境变量
+  BUILD_COMMAND: BASE_URL=$BASE_URL pnpm -r build --filter=@hcg1023/learn-changesets-docs
+  PUBLISH_DIR: ./packages/docs/dist
 
 on: # 在什么时候执行
   workflow_run: # 在main分支的ci这个工作流，执行完成以后
@@ -29,8 +31,8 @@ jobs: # 具体的任务
       - name: Deploy to GitHub Pages
         uses: ./.github/actions/deploy-docs
         with:
-          build: BASE_URL=$BASE_URL pnpm -r build --filter=@hcg1023/learn-changesets-docs
-          publish_dir: ./packages/docs/dist
+          build: $BUILD_COMMAND
+          publish_dir: $PUBLISH_DIR
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
 #      - name: Install pnpm # 安装pnpm
