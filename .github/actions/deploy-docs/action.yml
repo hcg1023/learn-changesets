@@ -16,11 +16,6 @@ on:
 runs:
   using: 'composite'
   steps:
-    - name: checkout code repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-
     - name: Install pnpm
       uses: pnpm/action-setup@v2.0.1
       with:
