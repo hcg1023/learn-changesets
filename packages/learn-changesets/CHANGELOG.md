@@ -1,5 +1,11 @@
 # @hcg1023/learn-changesets
 
+## 0.0.5-beta.0
+
+### Patch Changes
+
+- 886f3bb: update index
+
 ## 0.0.4
 
 ### Patch Changes
