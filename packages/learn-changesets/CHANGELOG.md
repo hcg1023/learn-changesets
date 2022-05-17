@@ -1,5 +1,11 @@
 # @hcg1023/learn-changesets
 
+## 0.0.5-beta.1
+
+### Patch Changes
+
+- f088441: update
+
 ## 0.0.5-beta.0
 
 ### Patch Changes
