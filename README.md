@@ -40,6 +40,18 @@
 4. 退出prerelease模式，需要执行`changeset pre exit`
 5. 执行以后会把当前的prerelease版本变成正式版本
 6. 执行发布即可
+## 在本项目内的prerelease要怎么做
+1. 新建一个分支，开启`changeset pre enter {tag}`模式
+2. 开发内容
+3. 提交Pull Request到main分支
+4. 合并PR
+5. main分支进入prerelease模式
+6. 合并changeset bot PR
+7. 会自动发布对应的prerelease版本
+8. 需要发布正式版本的时候，使用分支或者创建一个新分支
+9. 执行`changeset pre exit`退出prerelease模式
+10. 推送代码，提交PR
+11. 合并，自动发布正式版本
 
 # 关于`changeset-release/main`这个分支
 它是changesets自动创建的，不需要我们手动创建
