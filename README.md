@@ -33,6 +33,14 @@
 6. 我们还可以在publish.yml中，Post Publish to npm的时候，执行一些额外的操作
 7. 也可以在这里去执行deploy，比如部署到github pages
 
+# 关于prerelease
+1. 要发布一个beta或者next版本的话，需要先执行`changeset pre enter {tag}`
+2. 这样就进入了一个beta版本，在这之后的更改，都正常使用`changeset`来进行生成
+3. 需要发布的时候，通过`changeset version`更新版本并发布即可
+4. 退出prerelease模式，需要执行`changeset pre exit`
+5. 执行以后会把当前的prerelease版本变成正式版本
+6. 执行发布即可
+
 # 关于`changeset-release/main`这个分支
 它是changesets自动创建的，不需要我们手动创建
 
