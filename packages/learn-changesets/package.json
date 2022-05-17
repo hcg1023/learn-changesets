@@ -1,6 +1,6 @@
 {
   "name": "@hcg1023/learn-changesets",
-  "version": "0.0.5-next.2",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {

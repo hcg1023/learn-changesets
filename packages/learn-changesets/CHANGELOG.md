@@ -1,5 +1,13 @@
 # @hcg1023/learn-changesets
 
+## 0.0.5
+
+### Patch Changes
+
+- f088441: update
+- da537e6: update readme
+- 886f3bb: update index
+
 ## 0.0.5-next.2
 
 ### Patch Changes
