@@ -1,5 +1,11 @@
 # @hcg1023/learn-changesets
 
+## 0.0.5-next.2
+
+### Patch Changes
+
+- da537e6: update readme
+
 ## 0.0.5-beta.1
 
 ### Patch Changes
