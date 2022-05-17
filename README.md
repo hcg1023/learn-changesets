@@ -53,6 +53,11 @@
 10. 推送代码，提交PR
 11. 合并，自动发布正式版本
 
+## 更改tag，例如从beta到rc
+1. 先执行`changeset pre exit`退出prerelease模式
+2. 然后在紧接着执行`changeset pre enter next`进入rc的prerelease模式
+3. 推送代码
+
 # 关于`changeset-release/main`这个分支
 它是changesets自动创建的，不需要我们手动创建
 
