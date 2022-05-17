@@ -1,6 +1,6 @@
 {
   "mode": "pre",
-  "tag": "beta",
+  "tag": "next",
   "initialVersions": {
     "@hcg1023/learn-changesets-docs": "1.0.2",
     "@hcg1023/learn-changesets": "0.0.4"
